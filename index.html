@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Title</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+  <header>
+    <!-- place navbar here -->
+  </header>
+  <main>
+
+
+    <section class="container">
+      <div class="row">
+        <div class="col-2">
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Categorias
+            </button>
+            <ul id="lista" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+            </ul>
+          </div>
+            <!-- <select class="form-select" aria-label="Default select example" id="lista">
+              <option selected>Open this select menu</option>
+              
+            </select> -->
+        </div>
+        <div class="col-10">
+          <button class="btn btn-warning" onclick="deleteCow('4')" width="">Eliminar</button>
+        </div>
+      </div>
+
+
+
+      <table class="table mt-4">
+        <thead>
+          <tr>
+            <th scope="col">Raza</th>
+            <th scope="col">Imagen</th>
+          </tr>
+        </thead>
+        <tbody id="bodyHtml">
+
+        </tbody>
+      </table>
+    </section>
+
+
+    <section class="container">
+      <h4 class="text-warning">Actulizar datos</h4>
+      <div class="row">
+        <div class="col-12">
+          <form class="row g-3" id="form">
+
+            <div class="col-12">
+              <label for="name" class="form-label">Raza de la vaca</label>
+              <input type="text" class="form-control" id="raza" name="name">
+            </div>
+
+            <div class="col-12">
+              <label for="link" class="form=control">Enlace de la imagen</label>
+              <input type="text" class="form-control" id="link" name="image">
+            </div>
+
+
+            <div class="col-6">
+              <button id="btn" type="submit" class="btn btn-warning" " value=" 1">Agregar</button>
+            </div>
+
+
+          </form>
+        </div>
+      </div>
+      <div class="row btn-group" role="group">
+
+        <div class="col-4">
+          <div class="form-check form-check-inline rad">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="milk" value="1" name="cate" >
+            <label class="form-check-label" for="flexRadioDefault1">
+              Produccion lechera
+            </label>
+          </div>
+        </div>
+
+       <div class="col-4">
+        <div class="form-check form-check-inline rad">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="meat" value="2" name="cate" >
+          <label class="form-check-label" for="flexRadioDefault2">
+            Produccion carnica
+          </label>
+        </div>
+       </div>
+
+       <div class="col-4">
+        <div class="form-check form-check-inline rad">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="double" value="3" name="cate">
+          <label class="form-check-label" for="flexRadioDefault2">
+            Produccion doble proposito
+          </label>
+        </div>
+       </div>
+
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+
+  <footer>
+    <!-- place footer here -->
+  </footer>
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="api.js"></script>
+  <!-- <script src="post.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+    </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
