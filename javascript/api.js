@@ -3,66 +3,67 @@ categorias()
 
 
 //cargar categorias 
-function categorias(){
+function categorias() {
     fetch("http://localhost:5000/Category")
-    .then((res)=> res.json())
-    .then((res)=>{
-        
-        var inner="";
-        var ul= document.querySelector("#lista")
+        .then((res) => res.json())
+        .then((res) => {
 
-        for (let i = 0; i < res.length; i++) {
-       
-            inner +=   "<li class=\"dropdown-item\" onClick=\"getCows(" + res[i].id + ")\">" + res[i].name + "</li>";
-        
-        }
-    
-        ul.innerHTML= inner;    
-   
+            var inner = "";
+            var ul = document.querySelector("#lista")
 
-    })
-}
+            for (let i = 0; i < res.length; i++) {
 
-let currentIndex=0;
+                inner += "<li class=\"dropdown-item\" onClick=\"getCows(" + res[i].id + ")\">" + res[i].name + "</li>";
 
-
-
-
-
-
-
-    function getCows(ide){
-    let a= ""+ide;
-    fetch("http://localhost:5000/Cows")
-    .then((res)=> res.json())
-    .then((res)=>{
-        
-        const tabla = document.querySelector("#bodyHtml");
-        let innerhtml = "";
-
-        for(var i = 0; i < res.length; i++){
-            if(res[i].categoryId == a){
-                
-            innerhtml += "<tr><td>" + res[i].name + "</td><td>" + "<img class='img1' src=\"" + res[i].image + "\">" + "</td></tr>"
             }
-        }
 
-        tabla.innerHTML = innerhtml;
-    })
+            ul.innerHTML = inner;
+
+
+        })
+}
+
+let currentIndex = 0;
+
+
+
+
+
+
+
+function getCows(ide) {
+    let a = "" + ide;
+    fetch("http://localhost:5000/Cows")
+        .then((res) => res.json())
+        .then((res) => {
+
+            const tabla = document.querySelector("#bodyHtml");
+            let innerhtml = "";
+
+            for (var i = 0; i < res.length; i++) {
+                if (res[i].categoryId == a) {
+
+                    innerhtml += "<tr><td>" + res[i].name + "</td><td>" + "<img class='img1' src=\"" + res[i].image + "\">" + "</td></tr>"
+                }
+            }
+
+            tabla.innerHTML = innerhtml;
+        })
 }
 
 
 
 
-function deleteCow(id){
+function deleteCow(id) {
 
-    fetch("http://localhost:5000/Cows/"+id, {
+    fetch("http://localhost:5000/Cows/" + id, {
         method: 'DELETE',
-      });
+    });
 
 }
-  
+
+
+//export {getCows};
 
 
 //#endregion
-
