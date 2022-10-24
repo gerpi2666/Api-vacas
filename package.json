@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "json-server --port 5000 --watch Cows.json"
+    "start": "json-server --p 5000 --w Cows.json"
   },
   "author": "",
   "license": "ISC"
