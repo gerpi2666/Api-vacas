@@ -54,6 +54,6 @@ form.addEventListener('submit', (e) => {
         .then((res) => res.json())
         .then((res1) => console.log(res1))
 
- getCows(1)
+ getCows(cate)
 
 })
