@@ -70,7 +70,7 @@ const showModal1 = () => {
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-warning">Guardar</button>
+            <button type="button" class="btn btn-warning" onclick="tvaCat()">Guardar</button>
           </div>
         </div>
       </div>
@@ -96,17 +96,87 @@ const selectRow1 = (elemet, event, selector, handler) => {
     })
 };
 
-let i;
-let form1=0;
+let ia;
+let raza;
+let link;
+let id
+
 selectRow1(document, 'click', '.btnEdit', e => {
-   
+
     const fila = e.target.parentNode.parentNode;
-    i = fila.firstElementChild.innerHTML
+    ia = fila.firstElementChild.innerHTML
     showModal1()
-    let raza= document.querySelector('#raza1');
-    let image=document.querySelector('.img1')
-    let link= document.querySelector('#link1');
+    raza = document.querySelector('#raza1');
+    let image = document.querySelector('.img1')
+    link = document.querySelector('#link1');
     // console.log(raza)
-        raza.value= fila.children[0].innerHTML;
-        link.value= image.src;
+    raza.value = fila.children[0].innerHTML;
+    link.value = image.src;
+
+    tvaCat()
 })
+
+
+function tvaCat() {
+    let vaca1;
+    fetch("http://localhost:5000/Cows")
+        .then((res) => res.json())
+        .then((res) => {
+
+            for (var i = 0; i < res.length; i++) {
+                if (res[i].name == ia) {
+                    vaca1 = res[i];
+                    id = vaca1.id;
+                    break
+
+                }
+            }
+            //  updateTable(vaca.categoryId)
+            selection(vaca1.categoryId)
+            updateCow(raza,link,vaca1);
+
+        })
+}
+
+function selection(cat) {
+    let milk = document.getElementById('milk');
+    let meat = document.getElementById('meat');
+    let double = document.getElementById('double');
+    if (cat == 1) {
+        milk.checked = true;
+    }
+    if (cat == 2) {
+        meat.checked = true;
+    }
+    if (cat == 3) {
+        double.checked = true;
+    }
+
+}
+
+function updateCow(element1, element2, cow) {
+    let vaca = {
+        id: 0,
+        name: '',
+        image: '',
+        categoryId: 0
+    }
+
+
+    vaca.id = cow.id;
+    vaca.name = element1.value;
+    vaca.image = element2.value;
+    vaca.categoryId = cow.categoryId;
+
+    fetch("http://localhost:5000/Cows/"+cow.id, {
+            method: 'PUT',
+            body: JSON.stringify(vaca),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+
+        })
+        .then((res) => res.json())
+        .then((res1) => console.log(res1))
+
+}
