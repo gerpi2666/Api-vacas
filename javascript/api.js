@@ -13,7 +13,7 @@ function categorias() {
 
             for (let i = 0; i < res.length; i++) {
 
-                inner += "<li class=\"dropdown-item\" onClick=\"getCows(" + res[i].id + ")\">" + res[i].name + "</li>";
+                inner += "<li class=\"dropdown-item\" onClick=\"xmlHttpRequest(" + res[i].id + ")\">" + res[i].name + "</li>";
 
             }
 
@@ -71,3 +71,39 @@ function deleteCow(id) {
 
 
 //#endregion
+
+
+// function xmlHttpRequest(ide){
+
+//     let res = new XMLHttpRequest();
+
+//     res.onreadystatechange = function(){
+//         if(this.readyState == 4 && this.status == 200){
+            
+//             const tabla = document.querySelector("#bodyHtml");
+            
+//             let json = JSON.parse(this.responseText);
+
+//             console.log(json);
+
+//             let innerhtml = "";
+
+//             for (var i = 0; i < json.length; i++) {
+//                 if (json[i].categoryId == ide) {
+//                     innerhtml+= `
+//                     <tr>
+//                         <td>${json[i].name}</td>
+//                         <td><img src=\"${json[i].image}\"></td>
+//                         <td class="text-center"><button class="btn btn-primary">Editar</button> <button class="btn btn-warning">Eliminar</button></td>
+                    
+//                     `
+//                 }
+//             }
+
+//             tabla.innerHTML = innerhtml;
+//         }
+//     };
+
+//     res.open("GET", "http://localhost:5000/Cows", true);
+//     res.send();
+// }
