@@ -58,14 +58,6 @@ function getCows(ide) {
 
 
 
-function deleteCow(id) {
-
-    fetch("http://localhost:5000/Cows/" + id, {
-        method: 'DELETE',
-    });
-
-}
-
 
 //export {getCows};
 
