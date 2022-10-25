@@ -41,11 +41,11 @@ function getCows(ide) {
 
             for (var i = 0; i < res.length; i++) {
                 if (res[i].categoryId == a) {
-                    innerhtml+= `
+                    innerhtml += `
                     <tr>
-                        <td>${res[i].name}</td>
-                        <td>${res[i].image}</td>
-                        <td class="text-center"><button class="btn btn-primary">Editar</button> <button class="btn btn-warning">Eliminar</button></td>
+                        <td class="rowT">${res[i].name}</td>
+                        <td class="rowT"><img class="img1" src="${res[i].image}"></td>
+                        <td class="rowT text-center"><button class="btnEdit btn btn-primary" onclick="showModal1()">Editar</button> <button class="btnDelete btn btn-danger" onclick="showModal()">Eliminar</button></td>
                     
                     `
                 }
@@ -71,9 +71,9 @@ function getCows(ide) {
 
 //     res.onreadystatechange = function(){
 //         if(this.readyState == 4 && this.status == 200){
-            
+
 //             const tabla = document.querySelector("#bodyHtml");
-            
+
 //             let json = JSON.parse(this.responseText);
 
 //             console.log(json);
@@ -82,13 +82,13 @@ function getCows(ide) {
 
 //             for (var i = 0; i < json.length; i++) {
 //                 if (json[i].categoryId == ide) {
-//                     innerhtml+= `
-//                     <tr>
-//                         <td>${json[i].name}</td>
-//                         <td><img src=\"${json[i].image}\"></td>
-//                         <td class="text-center"><button class="btn btn-primary">Editar</button> <button class="btn btn-warning">Eliminar</button></td>
-                    
-//                     `
+// innerhtml+= `
+// <tr>
+//     <td class="rowT">${res[i].name}</td>
+//     <td class="rowT"><img class="img1" src="${res[i].image}"></td>
+//     <td class="rowT text-center"><button class="btnEdit btn btn-primary" onclick="showModal1()">Editar</button> <button class="btnDelete btn btn-danger" onclick="showModal()">Eliminar</button></td>
+
+// `
 //                 }
 //             }
 
