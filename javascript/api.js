@@ -36,7 +36,6 @@ function getCows(ide) {
     fetch("http://localhost:5000/Cows")
         .then((res) => res.json())
         .then((res) => {
-
             const tabla = document.querySelector("#bodyHtml");
             let innerhtml = "";
 

@@ -38,12 +38,19 @@ function getCows(ide) {
             const tabla = document.querySelector("#bodyHtml");
             let innerhtml = "";
 
+          
             for (var i = 0; i < res.length; i++) {
                 if (res[i].categoryId == a) {
-
-                    innerhtml += "<tr><td>" + res[i].name + "</td><td>" + "<img class='img1' src=\"" + res[i].image + "\">" + "</td></tr>"
+                    innerhtml+= `
+                    <tr>
+                        <td class="rowT">${res[i].name}</td>
+                        <td class="rowT"><img class="img1" src="${res[i].image}"></td>
+                        <td class="rowT text-center"><button class="btn btn-primary" onclick="showModal1()">Editar</button> <button class="btn btn-danger" onclick="showModal()">Eliminar</button></td>
+                    
+                    `
                 }
             }
+
 
             tabla.innerHTML = innerhtml;
         })
