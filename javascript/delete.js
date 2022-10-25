@@ -20,7 +20,7 @@ const showModal = () => {
             </div>
             <div class="modal-footer">
            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-           <button type="button" id="btnD" class="btn btn-primary">Guardar Cambios</button>
+           <button type="button" id="btnD" class="btn btn-primary" data-bs-dismiss="modal">Guardar Cambios</button>
              </div>
             </div>
             </div>
@@ -47,25 +47,73 @@ const selectRow=(elemet, event, selector, handler)=>{
 };
 
 
+let ide;
 
-
-let id='';
 selectRow(document, 'click', '.btnDelete', e=>{
+    
+
     const fila= e.target.parentNode.parentNode;
     console.log(fila);
-     id= fila.firstElementChild.innerHTML
-    console.log(id)
+     ide= fila.firstElementChild.innerHTML
+    console.log(ide)
+    tvaca(ide)
 })
 
 //delete
 
-function deleteCow(id) {
-
-
+function updateTable(ide){
     
-    fetch("http://localhost:5000/Cows/" + id, {
+    fetch("http://localhost:5000/Cows")
+        .then((res) => res.json())
+        .then((res) => {
+
+            const tabla = document.querySelector("#bodyHtml");
+            let innerhtml = "";
+
+          
+            for (var i = 0; i < res.length; i++) {
+                if (res[i].categoryId == ide) {
+                    innerhtml+= `
+                    <tr>
+                        <td class="rowT">${res[i].name}</td>
+                        <td class="rowT"><img class="img1" src="${res[i].image}"></td>
+                        <td class="rowT text-center"><button class="btnEdit btn btn-primary" onclick="showModal1()">Editar</button> <button class="btnDelete btn btn-danger" onclick="showModal()">Eliminar</button></td>
+                    
+                    `
+                }
+            }
+
+
+            tabla.innerHTML = innerhtml;
+        })
+}
+
+
+function tvaca() {
+    let vaca;
+    fetch("http://localhost:5000/Cows")
+        .then((res) => res.json())
+        .then((res) => {
+
+            for (var i = 0; i < res.length; i++) {
+                if (res[i].name == ide) {
+                   vaca= res[i];
+                   console.log(vaca);
+
+                }
+            }
+            deleteCow(vaca);
+            updateTable(vaca.categoryId)
+
+        })
+}
+
+
+function deleteCow(vaca) {
+    
+    fetch("http://localhost:5000/Cows/" + vaca.id, {
         method: 'DELETE',
     });
-    console.alert('Elemento borrado')
+    alert('Elemento borrado')
 
 }

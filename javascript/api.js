@@ -13,7 +13,7 @@ function categorias() {
 
             for (let i = 0; i < res.length; i++) {
 
-                inner += "<li class=\"dropdown-item\" onClick=\"xmlHttpRequest(" + res[i].id + ")\">" + res[i].name + "</li>";
+                inner += "<li class=\"dropdown-item\" onClick=\"getCows(" + res[i].id + ")\">" + res[i].name + "</li>";
 
             }
 
@@ -25,6 +25,7 @@ function categorias() {
 
 let currentIndex = 0;
 
+categorias()
 
 
 
