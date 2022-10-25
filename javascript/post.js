@@ -49,10 +49,21 @@ function getCows(ide) {
         })
 }
 
+function clean(){
+    document.getElementById("link").value="";
+    document.getElementById("raza").value="";
+    
+    let radio= document.querySelectorAll(".radio");
+    radio.forEach(radio => radio.checked= false);
 
-console.log(form);
+
+}
+
+
+
+//Hace el post
 form.addEventListener('submit', (e) => {
-    e.preventDefault();
+   e.preventDefault();
     const data = new FormData(form)
     let name1 = data.get("name");
     let image1 = data.get("image")
@@ -74,9 +85,11 @@ form.addEventListener('submit', (e) => {
         .then((res1) => console.log(res1))
 
     getCows(cate)
+    clean()
 
 })
 
+//Actualiza tabla
 form.addEventListener('submit', (e)=>{
     e.preventDefault();
     getCows(cate)

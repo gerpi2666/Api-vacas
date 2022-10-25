@@ -42,8 +42,13 @@ function getCows(ide) {
 
             for (var i = 0; i < res.length; i++) {
                 if (res[i].categoryId == a) {
-
-                    innerhtml += "<tr><td>" + res[i].name + "</td><td>" + "<img class='img1' src=\"" + res[i].image + "\">" + "</td></tr>"
+                    innerhtml+= `
+                    <tr>
+                        <td>${res[i].name}</td>
+                        <td>${res[i].image}</td>
+                        <td class="text-center"><button class="btn btn-primary">Editar</button> <button class="btn btn-warning">Eliminar</button></td>
+                    
+                    `
                 }
             }
 
