@@ -22,12 +22,12 @@ const showModal1 = () => {
       
                             <div class="col-12">
                                 <label for="name" class="form-label">Raza de la vaca</label>
-                                <input type="text" class="form-control" id="raza" name="name">
+                                <input type="text" class="form-control" id="raza1" name="name">
                             </div>
       
                             <div class="col-12">
                                 <label for="link" class="form=control">Enlace de la imagen</label>
-                                <input type="text" class="form-control" id="link" name="image">
+                                <input type="text" class="form-control" id="link1" name="image">
                             </div>
       
                             <div class="row btn-group" role="group">
@@ -79,7 +79,7 @@ const showModal1 = () => {
           `;
     document.body.append(modal);
 
-    let sho=new bootstrap.Modal(modal.querySelector('.modal'))
+    let sho = new bootstrap.Modal(modal.querySelector('.modal'))
 
     sho.show();
 
@@ -87,3 +87,26 @@ const showModal1 = () => {
 
 
 }
+
+const selectRow1 = (elemet, event, selector, handler) => {
+    elemet.addEventListener(event, e => {
+        if (e.target.closest(selector)) {
+            handler(e);
+        }
+    })
+};
+
+let i;
+let form1=0;
+selectRow1(document, 'click', '.btnEdit', e => {
+   
+    const fila = e.target.parentNode.parentNode;
+    i = fila.firstElementChild.innerHTML
+    showModal1()
+    let raza= document.querySelector('#raza1');
+    let image=document.querySelector('.img1')
+    let link= document.querySelector('#link1');
+    // console.log(raza)
+        raza.value= fila.children[0].innerHTML;
+        link.value= image.src;
+})

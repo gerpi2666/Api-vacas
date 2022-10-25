@@ -20,7 +20,7 @@ const showModal = () => {
             </div>
             <div class="modal-footer">
            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-           <button type="button" id="btnD" class="btn btn-primary" data-bs-dismiss="modal">Guardar Cambios</button>
+           <button type="button" id="btnD" onclick="deC()" class="btn btn-primary" data-bs-dismiss="modal">Guardar Cambios</button>
              </div>
             </div>
             </div>
@@ -29,7 +29,7 @@ const showModal = () => {
           `;
     document.body.append(modal);
 
-    let sho=new bootstrap.Modal(modal.querySelector('.modal'))
+    let sho = new bootstrap.Modal(modal.querySelector('.modal'))
 
     sho.show();
 
@@ -38,9 +38,12 @@ const showModal = () => {
 
 }
 
-const selectRow=(elemet, event, selector, handler)=>{
-    elemet.addEventListener(event,e =>{
-        if(e.target.closest(selector)){
+
+
+
+const selectRow = (elemet, event, selector, handler) => {
+    elemet.addEventListener(event, e => {
+        if (e.target.closest(selector)) {
             handler(e);
         }
     })
@@ -48,21 +51,22 @@ const selectRow=(elemet, event, selector, handler)=>{
 
 
 let ide;
+let btn;
+selectRow(document, 'click', '.btnDelete', e => {
 
-selectRow(document, 'click', '.btnDelete', e=>{
-    
-
-    const fila= e.target.parentNode.parentNode;
-    console.log(fila);
-     ide= fila.firstElementChild.innerHTML
-    console.log(ide)
-    tvaca(ide)
+    const fila = e.target.parentNode.parentNode;
+    ide = fila.firstElementChild.innerHTML
+    btn = document.getElementById('btnD')
 })
 
+
+function deC(){
+    tvaca(ide);
+}
 //delete
 
-function updateTable(ide){
-    
+function updateTable(ide) {
+
     fetch("http://localhost:5000/Cows")
         .then((res) => res.json())
         .then((res) => {
@@ -70,10 +74,10 @@ function updateTable(ide){
             const tabla = document.querySelector("#bodyHtml");
             let innerhtml = "";
 
-          
+
             for (var i = 0; i < res.length; i++) {
                 if (res[i].categoryId == ide) {
-                    innerhtml+= `
+                    innerhtml += `
                     <tr>
                         <td class="rowT">${res[i].name}</td>
                         <td class="rowT"><img class="img1" src="${res[i].image}"></td>
@@ -97,8 +101,8 @@ function tvaca() {
 
             for (var i = 0; i < res.length; i++) {
                 if (res[i].name == ide) {
-                   vaca= res[i];
-                   console.log(vaca);
+                    vaca = res[i];
+                    console.log(vaca);
 
                 }
             }
@@ -110,7 +114,7 @@ function tvaca() {
 
 
 function deleteCow(vaca) {
-    
+
     fetch("http://localhost:5000/Cows/" + vaca.id, {
         method: 'DELETE',
     });
