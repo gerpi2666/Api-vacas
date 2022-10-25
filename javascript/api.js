@@ -13,7 +13,7 @@ function categorias() {
 
             for (let i = 0; i < res.length; i++) {
 
-                inner += "<li class=\"dropdown-item\" onClick=\"xmlHttpRequest(" + res[i].id + ")\">" + res[i].name + "</li>";
+                inner += "<li class=\"dropdown-item\" onClick=\"getCows(" + res[i].id + ")\">" + res[i].name + "</li>";
 
             }
 
@@ -64,31 +64,30 @@ function getCows(ide) {
 
 //#endregion
 
+// ====================================================================
 
-// function xmlHttpRequest(ide){
+// function xmlHttpRequest(ide) {
 
 //     let res = new XMLHttpRequest();
 
-//     res.onreadystatechange = function(){
-//         if(this.readyState == 4 && this.status == 200){
+//     res.onreadystatechange = function () {
+//         if (this.readyState == 4 && this.status == 200) {
 
 //             const tabla = document.querySelector("#bodyHtml");
 
 //             let json = JSON.parse(this.responseText);
 
-//             console.log(json);
-
 //             let innerhtml = "";
 
 //             for (var i = 0; i < json.length; i++) {
 //                 if (json[i].categoryId == ide) {
-// innerhtml+= `
-// <tr>
-//     <td class="rowT">${res[i].name}</td>
-//     <td class="rowT"><img class="img1" src="${res[i].image}"></td>
-//     <td class="rowT text-center"><button class="btnEdit btn btn-primary" onclick="showModal1()">Editar</button> <button class="btnDelete btn btn-danger" onclick="showModal()">Eliminar</button></td>
-
-// `
+//                     innerhtml += `
+//                         <tr>
+//                             <td class="rowT">${json[i].name}</td>
+//                             <td class="rowT"><img class="img1" src="${json[i].image}"></td>
+//                             <td class="rowT text-center"><button class="btnEdit btn btn-primary" onclick="showModal1()">Editar</button> <button class="btnDelete btn btn-danger" onclick="showModal()">Eliminar</button></td>
+//                         </tr>
+//                         `
 //                 }
 //             }
 
@@ -99,3 +98,9 @@ function getCows(ide) {
 //     res.open("GET", "http://localhost:5000/Cows", true);
 //     res.send();
 // }
+
+// ====================================================================
+
+function jQueryAjax(){
+    $(document).rea
+}
