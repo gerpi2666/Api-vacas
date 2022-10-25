@@ -20,7 +20,7 @@ const showModal = () => {
             </div>
             <div class="modal-footer">
            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-           <button type="button" class="btn btn-primary">Guardar Cambios</button>
+           <button type="button" id="btnD" class="btn btn-primary">Guardar Cambios</button>
              </div>
             </div>
             </div>
@@ -35,5 +35,37 @@ const showModal = () => {
 
 
 
+
+}
+
+const selectRow=(elemet, event, selector, handler)=>{
+    elemet.addEventListener(event,e =>{
+        if(e.target.closest(selector)){
+            handler(e);
+        }
+    })
+};
+
+
+
+
+let id='';
+selectRow(document, 'click', '.btnDelete', e=>{
+    const fila= e.target.parentNode.parentNode;
+    console.log(fila);
+     id= fila.firstElementChild.innerHTML
+    console.log(id)
+})
+
+//delete
+
+function deleteCow(id) {
+
+
+    
+    fetch("http://localhost:5000/Cows/" + id, {
+        method: 'DELETE',
+    });
+    console.alert('Elemento borrado')
 
 }
