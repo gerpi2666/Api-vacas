@@ -1,5 +1,5 @@
 let cat
-let name;
+let name1;
 let ima;
 
 const showModal2 = () => {
@@ -92,7 +92,7 @@ const showModal2 = () => {
 
 }
 
-const selectRow2 = (elemet, event, selector, handler) => {
+const GetDataModal = (elemet, event, selector, handler) => {
     elemet.addEventListener(event, e => {
         if (e.target.closest(selector)) {
             handler(e);
@@ -101,63 +101,30 @@ const selectRow2 = (elemet, event, selector, handler) => {
 };
 
 
-selectRow2(document, 'click', '#add', e => {
+GetDataModal(document, 'click', '#add', e => {
     showModal2()
     console.log('HOLA')
-    // const fila = e.target.parentNode.parentNode;
-    // ia = fila.firstElementChild.innerHTML
-    name = document.querySelector('#raza2');
-    ima = document.querySelector('#link2');
-    selection()
 
-    // raza.value = fila.children[0].innerHTML;
-    // link.value = image.src;
+    name1 = document.querySelector('#raza2');
+    ima = document.querySelector('#link2');
+    let milk = document.getElementById('milk');
+    let meat = document.getElementById('meat');
+    let double = document.getElementById('double');
+    milk.addEventListener('click', () => {
+        cat = 1
+    })
+    meat.addEventListener('click', () => {
+        cat = 2
+    })
+    double.addEventListener('click', () => {
+        cat = 3
+    })
+  
 
 })
 
 
 
-// function selection() {
-//     let milk = document.getElementById('milk');
-//     milk.addEventListener('click', function (e) {
-//         cat = 1;
-//         console.log(cate)
-//     })
-
-//     let meat = document.getElementById('meat');
-
-//     meat.addEventListener('click', function (e) {
-//         cat = 2;
-//         console.log(cate)
-//     })
-
-//     let double = document.getElementById('double');
-
-//     double.addEventListener('click', function (e) {
-//         cat = 3;
-//         console.log(cate)
-//     })
-// }
-
-function selection() {
-    let milk = document.getElementById('milk');
-    let meat = document.getElementById('meat');
-    let double = document.getElementById('double');
-    console.log(milk)
-
-    if (milk.checked) {
-        cat = 1;
-        console.log(cat)
-    }
-    if (meat.checked) {
-        cat = 2;
-        console.log(cat)
-    }
-    if (double.checked) {
-        cat = 3;
-        console.log(cat)
-    }
-}
 
 
 function getCows(ide) {
@@ -189,13 +156,12 @@ function getCows(ide) {
 
 
 function insertCow() {
-    selection()
     let vaca = {
-        name: name.value,
+        name: name1.value,
         image: ima.value,
         categoryId: cat
     }
-    console.log(cat)
+    console.log(vaca)
     fetch("http://localhost:5000/Cows", {
             method: 'POST',
             body: JSON.stringify(vaca),
@@ -208,36 +174,3 @@ function insertCow() {
         .then((res1) => console.log(res1))
 }
 
-//Hace el post
-// form.addEventListener('submit', (e) => {
-//    e.preventDefault();
-//     const data = new FormData(form)
-//     let name1 = data.get("name");
-//     let image1 = data.get("image")
-
-//     let vaca = {
-//         name: name1,
-//         image: image1,
-//         categoryId: cate
-//     }
-//     fetch("http://localhost:5000/Cows", {
-//             method: 'POST',
-//             body: JSON.stringify(vaca),
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             }
-
-//         })
-//         .then((res) => res.json())
-//         .then((res1) => console.log(res1))
-
-//     getCows(cate)
-//     clean()
-
-// })
-
-//Actualiza tabla
-// form.addEventListener('submit', (e)=>{
-//     e.preventDefault();
-//     getCows(cate)
-// })
