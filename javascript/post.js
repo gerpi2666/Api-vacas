@@ -74,7 +74,7 @@ const showModal2 = () => {
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-warning" data-bs-dismiss="modal" onclick="insertCow()">Guardar</button>
+            <button type="button" class="btn btn-warning" data-bs-dismiss="modal" onclick="Insert()">Guardar</button>
           </div>
         </div>
       </div>
@@ -127,7 +127,7 @@ GetDataModal(document, 'click', '#add', e => {
 
 
 
-function getCows(ide) {
+function UpdateTable(ide) {
     let a = "" + ide;
     fetch("http://localhost:5000/Cows")
         .then((res) => res.json())
@@ -154,14 +154,20 @@ function getCows(ide) {
         })
 }
 
-
-function insertCow() {
+function Insert(){
     let vaca = {
         name: name1.value,
         image: ima.value,
         categoryId: cat
     }
-    console.log(vaca)
+    post(vaca);
+    updateTable(vaca.categoryId);
+}
+
+
+function post(vaca) {
+ 
+   
     fetch("http://localhost:5000/Cows", {
             method: 'POST',
             body: JSON.stringify(vaca),
@@ -172,5 +178,7 @@ function insertCow() {
         })
         .then((res) => res.json())
         .then((res1) => console.log(res1))
+        alert('Elemento agregado')
+
 }
 

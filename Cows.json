@@ -11,6 +11,18 @@
       "name": "Nelore1",
       "image": "https://nutrimaxcr.com/wp-content/uploads/2017/11/TodoSobreRazaNelorePortada-1000x665.jpg",
       "categoryId": 3
+    },
+    {
+      "name": "holstein",
+      "image": "https://www.intagri.com/assets/images/articulos/categoria1/ganaderia/art76-vacas-holstein/Vaca-holstein.jpg",
+      "categoryId": 1,
+      "id": 10
+    },
+    {
+      "name": "Holstein rojo",
+      "image": "https://c8.alamy.com/compes/e7xw2d/ganado-holstein-rojo-el-ganado-lechero-vistiendo-un-cabestro-en-un-prado-al-norte-del-tirol-austria-e7xw2d.jpg",
+      "categoryId": 1,
+      "id": 11
     }
   ],
   "Category": [
