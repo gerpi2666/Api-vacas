@@ -38,7 +38,7 @@ const showModal2 = () => {
 
                                 <div class="col-4">
                                 <div class="form-check form-check-inline rad">
-                                <input class="form-check-input radio" type="radio" name="flexRadioDefault" id="milk" value="1" name="cate" >
+                                <input class="form-check-input radio" type="radio" name="flexRadioDefault" id="milk" value="1" name="cate">
                                 <label class="form-check-label" for="flexRadioDefault1">
                                   Produccion lechera
                                 </label>
@@ -108,6 +108,8 @@ selectRow2(document, 'click', '#add', e => {
     // ia = fila.firstElementChild.innerHTML
     name = document.querySelector('#raza2');
     ima = document.querySelector('#link2');
+    selection()
+
     // raza.value = fila.children[0].innerHTML;
     // link.value = image.src;
 
@@ -115,28 +117,47 @@ selectRow2(document, 'click', '#add', e => {
 
 
 
+// function selection() {
+//     let milk = document.getElementById('milk');
+//     milk.addEventListener('click', function (e) {
+//         cat = 1;
+//         console.log(cate)
+//     })
+
+//     let meat = document.getElementById('meat');
+
+//     meat.addEventListener('click', function (e) {
+//         cat = 2;
+//         console.log(cate)
+//     })
+
+//     let double = document.getElementById('double');
+
+//     double.addEventListener('click', function (e) {
+//         cat = 3;
+//         console.log(cate)
+//     })
+// }
+
 function selection() {
     let milk = document.getElementById('milk');
-    milk.addEventListener('click', function (e) {
-        cat = 1;
-        console.log(cate)
-    })
-
     let meat = document.getElementById('meat');
-
-    meat.addEventListener('click', function (e) {
-        cat = 2;
-        console.log(cate)
-    })
-
     let double = document.getElementById('double');
+    console.log(milk)
 
-    double.addEventListener('click', function (e) {
+    if (milk.checked) {
+        cat = 1;
+        console.log(cat)
+    }
+    if (meat.checked) {
+        cat = 2;
+        console.log(cat)
+    }
+    if (double.checked) {
         cat = 3;
-        console.log(cate)
-    })
+        console.log(cat)
+    }
 }
-
 
 
 function getCows(ide) {
@@ -168,7 +189,6 @@ function getCows(ide) {
 
 
 function insertCow() {
-   
     selection()
     let vaca = {
         name: name.value,
