@@ -1,4 +1,4 @@
-export const FillTable = (ide) => {
+export function FillTable(ide) {
     let a = "" + ide;
     fetch("http://localhost:5000/Cows")
         .then((res) => res.json())
@@ -22,7 +22,7 @@ export const FillTable = (ide) => {
         })
 }
 
-export const GetDataModal = (elemet, event, selector, handler) => {
+export function GetDataModal(elemet, event, selector, handler) {
     elemet.addEventListener(event, e => {
         if (e.target.closest(selector)) {
             handler(e);

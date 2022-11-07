@@ -1,9 +1,9 @@
-import {FillTable, GetDataModal} from './Util';
+import {FillTable, GetDataModal} from './Util.js';
 
 let modal = null;
 
 const showModal = () => {
-    
+
     if (modal !== null) {
         modal.remove();
     }
