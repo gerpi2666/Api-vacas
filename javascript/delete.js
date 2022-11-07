@@ -1,6 +1,9 @@
+import {FillTable, GetDataModal} from './Util';
+
 let modal = null;
 
 const showModal = () => {
+    
     if (modal !== null) {
         modal.remove();
     }
@@ -32,27 +35,13 @@ const showModal = () => {
     let sho = new bootstrap.Modal(modal.querySelector('.modal'))
 
     sho.show();
-
-
-
-
 }
-
-
-
-
-const selectRow = (elemet, event, selector, handler) => {
-    elemet.addEventListener(event, e => {
-        if (e.target.closest(selector)) {
-            handler(e);
-        }
-    })
-};
 
 
 let ide;
 let btn;
-selectRow(document, 'click', '.btnDelete', e => {
+
+GetDataModal(document, 'click', '.btnDelete', e => {
 
     const fila = e.target.parentNode.parentNode;
     ide = fila.firstElementChild.innerHTML
@@ -63,6 +52,7 @@ selectRow(document, 'click', '.btnDelete', e => {
 function deC(){
     tvaca(ide);
 }
+
 //delete
 
 function updateTable(ide) {

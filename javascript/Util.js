@@ -1,31 +1,4 @@
-categorias();
-
-//cargar categorias 
-function categorias() {
-    fetch("http://localhost:5000/Category")
-        .then((res) => res.json())
-        .then((res) => {
-
-            var inner = "";
-            var ul = document.querySelector("#lista")
-
-            for (let i = 0; i < res.length; i++) {
-
-                inner += "<li class=\"dropdown-item\" onClick=\"getCows(" + res[i].id + ")\">" + res[i].name + "</li>";
-
-            }
-
-            ul.innerHTML = inner;
-
-
-        })
-}
-
-let currentIndex = 0;
-
-categorias()
-
-function getCows(ide) {
+export const FillTable = (ide) => {
     let a = "" + ide;
     fetch("http://localhost:5000/Cows")
         .then((res) => res.json())
@@ -49,9 +22,13 @@ function getCows(ide) {
         })
 }
 
-
-
-
+export const GetDataModal = (elemet, event, selector, handler) => {
+    elemet.addEventListener(event, e => {
+        if (e.target.closest(selector)) {
+            handler(e);
+        }
+    })
+};
 
 //export {getCows};
 
