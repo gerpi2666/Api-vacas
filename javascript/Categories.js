@@ -1,4 +1,3 @@
-import {FillTable} from './Util';
 
 categorias();
 

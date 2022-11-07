@@ -70,7 +70,7 @@ const showModal1 = () => {
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-warning" onclick="tvaCat()">Guardar</button>
+            <button type="button" class="btn btn-warning" onclick="Update()">Guardar</button>
           </div>
         </div>
       </div>
@@ -117,7 +117,7 @@ selectRow1(document, 'click', '.btnEdit', e => {
 })
 
 
-function tvaCat() {
+function Update() {
     let vaca1;
     fetch("http://localhost:5000/Cows")
         .then((res) => res.json())
@@ -133,7 +133,7 @@ function tvaCat() {
             }
             //  updateTable(vaca.categoryId)
             selection(vaca1.categoryId)
-            updateCow(raza,link,vaca1);
+            put(raza,link,vaca1);
 
         })
 }
@@ -154,7 +154,7 @@ function selection(cat) {
 
 }
 
-function updateCow(element1, element2, cow) {
+function put(element1, element2, cow) {
     let vaca = {
         id: 0,
         name: '',
@@ -178,5 +178,7 @@ function updateCow(element1, element2, cow) {
         })
         .then((res) => res.json())
         .then((res1) => console.log(res1))
+
+        alert('Elemento actualizado')
 
 }
