@@ -13,16 +13,16 @@
       "categoryId": 3
     },
     {
-      "name": "holstein",
-      "image": "https://www.intagri.com/assets/images/articulos/categoria1/ganaderia/art76-vacas-holstein/Vaca-holstein.jpg",
-      "categoryId": 1,
-      "id": 10
-    },
-    {
       "name": "Holstein rojo",
       "image": "https://c8.alamy.com/compes/e7xw2d/ganado-holstein-rojo-el-ganado-lechero-vistiendo-un-cabestro-en-un-prado-al-norte-del-tirol-austria-e7xw2d.jpg",
       "categoryId": 1,
       "id": 11
+    },
+    {
+      "name": "Vaca 6",
+      "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAHAAlgMBIgACEQEDEQH/xAAcAAAABwEBAAAAAAAAAAAAAAAAAgMEBQYHAQj/xAA6EAACAQIEAwUHAwIFBQAAAAABAgMEEQAFEiExQVEGEyJhgQcUMnGRofCxwdEjQlJiouHxFRYkM3L/xAAaAQACAwEBAAAAAAAAAAAAAAACAwABBAUG/8QAJBEAAgICAgIDAAMBAAAAAAAAAAECEQMhEjETUQQUQSIyYQX/2gAMAwEAAhEDEQA/ALNTZTTPlUUKzdy88YlcuCRYgkAK23009eQwWhhzKglEaMdOm0SFRqIG9iqsSBx44rdZ2lnzERxQwBKNCNEBbiB/iPE9eXHyGHU3aDMamNFnqlUJuqQ3X5cP35Yy5MkESOKT2aF75V9yve09gHFnjkBuvNrchw2474ce+SL3bFdRckrptx224/lsUfL+1TxQJFNTxvEjARm5AA9OJwjUZ9V1DA1JCqmrSEAGkfm2K+xFR/bGrE2zV0e+x423we4xmmWVGe1v/k0RqJoju0upUQHmPERe3lfAzqoz+nkKVfvJspKslyhH/wBDb674fHJyV0V41fZpE00UCF5nVEHFmNhiLqO0WXxKe7kaZhyRT+pxmYrK8oBolbfgTf6b4Sq6urhhDFDEG4tI6qT6E3wDySekhnihFW2XHMO0dXJMwil7iIaSFVfEQSdr4iZq+aV2YuJX5AtqNsVSlz+nWpVK6WV4y4H9O2wvx3twvjXafszlaxKJI3mA3BZyPsLYkseR9lxy4o/1KUHlI8enja1gN8BnVRxA24gjb",
+      "categoryId": 2,
+      "id": 13
     }
   ],
   "Category": [
