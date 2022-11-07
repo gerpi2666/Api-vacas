@@ -1,5 +1,5 @@
 export function FillTable(ide) {
-    let a = "" + ide;
+    let a = ide;
     fetch("http://localhost:5000/Cows")
         .then((res) => res.json())
         .then((res) => {
@@ -12,7 +12,7 @@ export function FillTable(ide) {
                     <tr>
                         <td class="rowT">${res[i].name}</td>
                         <td class="rowT"><img class="img1" src="${res[i].image}"></td>
-                        <td class="rowT text-center"><button class="btnEdit btn btn-primary" >Editar</button> <button class="btnDelete btn btn-danger" onclick="showModal()">Eliminar</button></td>
+                        <td class="rowT text-center"><button class="btnEdit btn btn-primary" >Editar</button> <button class="btnDelete btn btn-danger">Eliminar</button></td>
                     
                     `
                 }

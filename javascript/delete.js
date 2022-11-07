@@ -23,87 +23,57 @@ const showModal = () => {
             </div>
             <div class="modal-footer">
            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-           <button type="button" id="btnD" onclick="deC()" class="btn btn-primary" data-bs-dismiss="modal">Guardar Cambios</button>
+           <button type="button" id="btnD" class="btn btn-primary" data-bs-dismiss="modal">Guardar Cambios</button>
              </div>
             </div>
             </div>
          </div>
-      
           `;
+
     document.body.append(modal);
 
     let sho = new bootstrap.Modal(modal.querySelector('.modal'))
 
     sho.show();
+
+    document.querySelector("#btnD").addEventListener("click", function(){
+        DeleteCow();
+    });
 }
 
 
-let ide;
+let nombre;
 let btn;
 
 GetDataModal(document, 'click', '.btnDelete', e => {
-
     const fila = e.target.parentNode.parentNode;
-    ide = fila.firstElementChild.innerHTML
-    btn = document.getElementById('btnD')
+    nombre = fila.firstElementChild.innerHTML;
+    btn = document.getElementById('btnD');
+    showModal();
 })
 
 
-function deC(){
-    tvaca(ide);
-}
 
-//delete
-
-function updateTable(ide) {
-
-    fetch("http://localhost:5000/Cows")
-        .then((res) => res.json())
-        .then((res) => {
-
-            const tabla = document.querySelector("#bodyHtml");
-            let innerhtml = "";
-
-
-            for (var i = 0; i < res.length; i++) {
-                if (res[i].categoryId == ide) {
-                    innerhtml += `
-                    <tr>
-                        <td class="rowT">${res[i].name}</td>
-                        <td class="rowT"><img class="img1" src="${res[i].image}"></td>
-                        <td class="rowT text-center"><button class="btnEdit btn btn-primary" onclick="showModal1()">Editar</button> <button class="btnDelete btn btn-danger" onclick="showModal()">Eliminar</button></td>
-                    
-                    `
-                }
-            }
-
-
-            tabla.innerHTML = innerhtml;
-        })
-}
-
-
-function tvaca() {
+function DeleteCow() {
     let vaca;
     fetch("http://localhost:5000/Cows")
         .then((res) => res.json())
         .then((res) => {
 
             for (var i = 0; i < res.length; i++) {
-                if (res[i].name == ide) {
+                if (res[i].name == nombre) {
                     vaca = res[i];
                     console.log(vaca);
 
                 }
             }
-            deleteCow(vaca);
-            updateTable(vaca.categoryId)
-
+            Delete(vaca);
+            FillTable(vaca.categoryId);
         })
 }
 
 
-function deleteCow(vaca) {
+function Delete(vaca) {
 
     fetch("http://localhost:5000/Cows/" + vaca.id, {
         method: 'DELETE',

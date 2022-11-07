@@ -1,8 +1,11 @@
+import {FillTable, GetDataModal} from './Util.js';
+
 let cat
 let name1;
 let ima;
+let modal = null;
 
-const showModal2 = () => {
+const showModal = () => {
     if (modal !== null) {
         modal.remove();
     }
@@ -74,7 +77,7 @@ const showModal2 = () => {
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-warning" data-bs-dismiss="modal" onclick="Insert()">Guardar</button>
+            <button id="btnInsert" type="button" class="btn btn-warning" data-bs-dismiss="modal">Guardar</button>
           </div>
         </div>
       </div>
@@ -87,23 +90,16 @@ const showModal2 = () => {
 
     sho.show();
 
-
-
+    document.querySelector("#btnInsert").addEventListener('click', function(){
+        PostCow();
+    });
 
 }
 
-const GetDataModal = (elemet, event, selector, handler) => {
-    elemet.addEventListener(event, e => {
-        if (e.target.closest(selector)) {
-            handler(e);
-        }
-    })
-};
-
 
 GetDataModal(document, 'click', '#add', e => {
-    showModal2()
-    console.log('HOLA')
+    
+    showModal()
 
     name1 = document.querySelector('#raza2');
     ima = document.querySelector('#link2');
@@ -119,55 +115,23 @@ GetDataModal(document, 'click', '#add', e => {
     double.addEventListener('click', () => {
         cat = 3
     })
-  
 
 })
 
 
-
-
-
-function UpdateTable(ide) {
-    let a = "" + ide;
-    fetch("http://localhost:5000/Cows")
-        .then((res) => res.json())
-        .then((res) => {
-
-            const tabla = document.querySelector("#bodyHtml");
-            let innerhtml = "";
-
-
-            for (var i = 0; i < res.length; i++) {
-                if (res[i].categoryId == a) {
-                    innerhtml += `
-                    <tr>
-                        <td class="rowT">${res[i].name}</td>
-                        <td class="rowT"><img class="img1" src="${res[i].image}"></td>
-                        <td class="rowT text-center"><button class="btnEdit btn btn-primary">Editar</button> <button class="btnDelete btn btn-danger" onclick="showModal()">Eliminar</button></td>
-                    
-                    `
-                }
-            }
-
-
-            tabla.innerHTML = innerhtml;
-        })
-}
-
-function Insert(){
+function PostCow(){
     let vaca = {
         name: name1.value,
         image: ima.value,
         categoryId: cat
     }
-    post(vaca);
-    updateTable(vaca.categoryId);
+    Post(vaca);
+    FillTable(vaca.categoryId);
 }
 
 
-function post(vaca) {
+function Post(vaca) {
  
-   
     fetch("http://localhost:5000/Cows", {
             method: 'POST',
             body: JSON.stringify(vaca),
@@ -180,32 +144,4 @@ function post(vaca) {
         .then((res1) => console.log(res1))
         alert('Elemento agregado')
 
-}
-
-
-function updateTable(ide) {
-
-    fetch("http://localhost:5000/Cows")
-        .then((res) => res.json())
-        .then((res) => {
-
-            const tabla = document.querySelector("#bodyHtml");
-            let innerhtml = "";
-
-
-            for (var i = 0; i < res.length; i++) {
-                if (res[i].categoryId == ide) {
-                    innerhtml += `
-                    <tr>
-                        <td class="rowT">${res[i].name}</td>
-                        <td class="rowT"><img class="img1" src="${res[i].image}"></td>
-                        <td class="rowT text-center"><button class="btnEdit btn btn-primary" onclick="showModal1()">Editar</button> <button class="btnDelete btn btn-danger" onclick="showModal()">Eliminar</button></td>
-                    
-                    `
-                }
-            }
-
-
-            tabla.innerHTML = innerhtml;
-        })
 }
