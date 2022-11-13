@@ -1,4 +1,7 @@
-import {FillTable, GetDataModal} from './Util.js';
+import {
+    FillTable,
+    GetDataModal
+} from './Util.js';
 
 let modal = null;
 
@@ -87,7 +90,7 @@ const showModal = () => {
 
     sho.show();
 
-    document.querySelector("#btnUpdate").addEventListener('click', function(){
+    document.querySelector("#btnUpdate").addEventListener('click', function () {
         Update();
     });
 
@@ -104,7 +107,7 @@ let id
 GetDataModal(document, 'click', '#btnEdit1', e => {
     const fila = e.target.parentNode.parentNode;
     name = fila.firstElementChild.innerHTML
-    console.log(name)
+    //console.log(name)
     showModal()
     raza = document.querySelector('#raza1');
     let image = document.querySelector('.img1')
@@ -130,10 +133,11 @@ function Update() {
 
                 }
             }
-            //  updateTable(vaca.categoryId)
             selection(vaca1.categoryId)
-            updateCow(raza,link,vaca1);
-            FillTable(vaca.categoryId)
+            updateCow(raza, link, vaca1);
+            //XmlrequestPut(raza, link, vaca1)
+            //AjaxJqueryPUT(raza, link, vaca1);
+            FillTable(vaca1.categoryId)
 
         })
 }
@@ -153,7 +157,7 @@ function selection(cat) {
     }
 
 }
-
+//fetch
 function updateCow(element1, element2, cow) {
     let vaca = {
         id: 0,
@@ -168,7 +172,7 @@ function updateCow(element1, element2, cow) {
     vaca.image = element2.value;
     vaca.categoryId = cow.categoryId;
 
-    fetch("http://localhost:5000/Cows/"+cow.id, {
+    fetch("http://localhost:5000/Cows/" + cow.id, {
             method: 'PUT',
             body: JSON.stringify(vaca),
             headers: {
@@ -178,6 +182,57 @@ function updateCow(element1, element2, cow) {
         })
         .then((res) => res.json())
         .then((res1) => console.log(res1))
-        alert('Elemento Actualizado')
+    alert('Elemento Actualizado')
 
+}
+
+//XMLHttpRequest
+function XmlrequestPut(element1, element2, cow) {
+    let vaca = {
+        id: 0,
+        name: '',
+        image: '',
+        categoryId: 0
+    }
+    vaca.id = cow.id;
+    vaca.name = element1.value;
+    vaca.image = element2.value;
+    vaca.categoryId = cow.categoryId;
+    console.log(vaca)
+    let req = new XMLHttpRequest();
+    req.open("PUT", 'http://localhost:5000/Cows/' + vaca.id, true)
+    req.setRequestHeader("Content-Type", "application/json");
+
+    req.onreadystatechange = () => {
+        if (req.readyState == 4 && req.status == 200) {
+            let cow = JSON.parse(this.responseText);
+            console.log(cow)
+        }
+    }
+
+    req.send(JSON.stringify(vaca))
+}
+
+//Ajax Jquery
+function AjaxJqueryPUT(element1, element2, cow) {
+    let vaca = {
+        id: 0,
+        name: '',
+        image: '',
+        categoryId: 0
+    }
+    vaca.id = cow.id;
+    vaca.name = element1.value;
+    vaca.image = element2.value;
+    vaca.categoryId = cow.categoryId;
+
+    $.ajax({
+        type: "PUT",
+        url: "http://localhost:5000/Cows/"+cow.id,
+        data: vaca,
+        success: function (result) {
+            console.log(result);
+        },
+        dataType: "json"
+    });
 }

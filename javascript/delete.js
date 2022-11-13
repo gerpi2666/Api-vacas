@@ -1,4 +1,7 @@
-import {FillTable, GetDataModal} from './Util.js';
+import {
+    FillTable,
+    GetDataModal
+} from './Util.js';
 
 let modal = null;
 
@@ -36,7 +39,7 @@ const showModal = () => {
 
     sho.show();
 
-    document.querySelector("#btnD").addEventListener("click", function(){
+    document.querySelector("#btnD").addEventListener("click", function () {
         DeleteCow();
     });
 }
@@ -68,11 +71,13 @@ function DeleteCow() {
                 }
             }
             Delete(vaca);
+            //XmlRequestDelete(vaca);
+            //AjaxJqueryDelete(vaca);
             FillTable(vaca.categoryId);
         })
 }
 
-
+//fetch
 function Delete(vaca) {
 
     fetch("http://localhost:5000/Cows/" + vaca.id, {
@@ -80,4 +85,31 @@ function Delete(vaca) {
     });
     alert('Elemento borrado')
 
+}
+//XMLHttpRequest
+function XmlRequestDelete(vaca) {
+    let req = new XMLHttpRequest();
+
+    req.onreadystatechange = () => {
+        if (req.readyState == 4 && req.status == 200) {
+            let cow = JSON.parse(this.responseText);
+            console.log(cow)
+        }
+    }
+
+    req.open('DELETE', 'http://localhost:5000/Cows/' + vaca.id, true)
+    req.send(null)
+}
+
+//AjaxJquery
+function AjaxJqueryDelete(vaca) {
+    $.ajax({
+        type: "DELETE",
+        url: "http://localhost:5000/Cows/" + vaca.id,
+        data: vaca,
+        success: function (result) {
+            console.log(result);
+        },
+        dataType: "json"
+    });
 }

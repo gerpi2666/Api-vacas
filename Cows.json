@@ -7,16 +7,10 @@
       "categoryId": 2
     },
     {
-      "id": 9,
-      "name": "Nelore",
-      "image": "https://nutrimaxcr.com/wp-content/uploads/2017/11/TodoSobreRazaNelorePortada-1000x665.jpg",
-      "categoryId": 3
-    },
-    {
-      "id": 11,
-      "name": "Holstein rojo1",
-      "image": "https://c8.alamy.com/compes/e7xw2d/ganado-holstein-rojo-el-ganado-lechero-vistiendo-un-cabestro-en-un-prado-al-norte-del-tirol-austria-e7xw2d.jpg",
-      "categoryId": 1
+      "name": "pp",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJU3d52qtGnUToqd8vl-1oNSFkzTP_Ms0UT_Ully-maw&s",
+      "categoryId": "1",
+      "id": 3
     }
   ],
   "Category": [

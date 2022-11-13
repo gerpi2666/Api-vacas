@@ -1,4 +1,7 @@
-import {FillTable, GetDataModal} from './Util.js';
+import {
+  FillTable,
+  GetDataModal
+} from './Util.js';
 
 let cat
 let name1;
@@ -6,13 +9,13 @@ let ima;
 let modal = null;
 
 const showModal = () => {
-    if (modal !== null) {
-        modal.remove();
-    }
+  if (modal !== null) {
+    modal.remove();
+  }
 
-    modal = document.createElement('div');
+  modal = document.createElement('div');
 
-    modal.innerHTML += `
+  modal.innerHTML += `
       
     <!-- Modal -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -84,64 +87,101 @@ const showModal = () => {
     </div>
       
           `;
-    document.body.append(modal);
+  document.body.append(modal);
 
-    let sho = new bootstrap.Modal(modal.querySelector('.modal'))
+  let sho = new bootstrap.Modal(modal.querySelector('.modal'))
 
-    sho.show();
+  sho.show();
 
-    document.querySelector("#btnInsert").addEventListener('click', function(){
-        PostCow();
-    });
+  document.querySelector("#btnInsert").addEventListener('click', function () {
+    PostCow();
+  });
 
 }
 
 
 GetDataModal(document, 'click', '#add', e => {
-    
-    showModal()
 
-    name1 = document.querySelector('#raza2');
-    ima = document.querySelector('#link2');
-    let milk = document.getElementById('milk');
-    let meat = document.getElementById('meat');
-    let double = document.getElementById('double');
-    milk.addEventListener('click', () => {
-        cat = 1
-    })
-    meat.addEventListener('click', () => {
-        cat = 2
-    })
-    double.addEventListener('click', () => {
-        cat = 3
-    })
+  showModal()
+
+  name1 = document.querySelector('#raza2');
+  ima = document.querySelector('#link2');
+  let milk = document.getElementById('milk');
+  let meat = document.getElementById('meat');
+  let double = document.getElementById('double');
+  milk.addEventListener('click', () => {
+    cat = 1
+  })
+  meat.addEventListener('click', () => {
+    cat = 2
+  })
+  double.addEventListener('click', () => {
+    cat = 3
+  })
 
 })
 
 
-function PostCow(){
-    let vaca = {
-        name: name1.value,
-        image: ima.value,
-        categoryId: cat
-    }
-    Post(vaca);
-    FillTable(vaca.categoryId);
+function PostCow() {
+  let vaca = {
+    name: name1.value,
+    image: ima.value,
+    categoryId: cat
+  }
+   Post(vaca);
+  //XmlrequestPost(vaca);
+  //AjaxJqueryPost(vaca);
+  FillTable(vaca.categoryId);
 }
 
-
+//fetch
 function Post(vaca) {
- 
-    fetch("http://localhost:5000/Cows", {
-            method: 'POST',
-            body: JSON.stringify(vaca),
-            headers: {
-                'Content-Type': 'application/json'
-            }
 
-        })
-        .then((res) => res.json())
-        .then((res1) => console.log(res1))
-        alert('Elemento agregado')
+  fetch("http://localhost:5000/Cows", {
+      method: 'POST',
+      body: JSON.stringify(vaca),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+
+    })
+    .then((res) => res.json())
+    .then((res1) => console.log(res1))
+  alert('Elemento agregado')
+
+}
+
+//XMLhttprequest
+
+function XmlrequestPost(vaca) {
+  let req = new XMLHttpRequest();
+  req.open('POST', 'http://localhost:5000/Cows', true)
+
+  req.setRequestHeader("Accept", "application/json");
+  req.setRequestHeader("Content-Type", "application/json");
+  console.log(vaca)
+  req.onreadystatechange = () => {
+    if (req.readyState == 4 && req.status == 200) {
+      console.log('cow')
+    }
+  }
+
+  req.send(JSON.stringify(vaca))
+  alert('Elemento agregado')
+
+}
+
+//Ajax Jquery
+function AjaxJqueryPost(vaca) {
+  $.ajax({
+    type: "POST",
+    url: "http://localhost:5000/Cows",
+    data: vaca,
+    success: function (result) {
+      console.log(result);
+    },
+    dataType: "json"
+  });
+  alert('Elemento agregado')
 
 }
