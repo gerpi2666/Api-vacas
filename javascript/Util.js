@@ -12,7 +12,7 @@ export function FillTable(ide) {
                     <tr>
                         <td class="rowT">${res[i].name}</td>
                         <td class="rowT"><img class="img1" src="${res[i].image}"></td>
-                        <td class="rowT text-center"><button class="btnEdit btn btn-primary" >Editar</button> <button class="btnDelete btn btn-danger">Eliminar</button></td>
+                        <td class="rowT text-center"><button class="btn btn-primary" id="btnEdit1" >Editar</button> <button class="btnDelete btn btn-danger">Eliminar</button></td>
                     
                     `
                 }

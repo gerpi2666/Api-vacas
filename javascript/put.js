@@ -1,4 +1,8 @@
-const showModal1 = () => {
+import {FillTable, GetDataModal} from './Util.js';
+
+let modal = null;
+
+const showModal = () => {
     if (modal !== null) {
         modal.remove();
     }
@@ -70,7 +74,7 @@ const showModal1 = () => {
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-warning" onclick="tvaCat()">Guardar</button>
+            <button type="button" class="btn btn-warning" id="btnUpdate">Guardar</button>
           </div>
         </div>
       </div>
@@ -83,29 +87,25 @@ const showModal1 = () => {
 
     sho.show();
 
-
+    document.querySelector("#btnUpdate").addEventListener('click', function(){
+        Update();
+    });
 
 
 }
 
-const selectRow1 = (elemet, event, selector, handler) => {
-    elemet.addEventListener(event, e => {
-        if (e.target.closest(selector)) {
-            handler(e);
-        }
-    })
-};
 
-let ia;
+
+let name;
 let raza;
 let link;
 let id
 
-selectRow1(document, 'click', '.btnEdit', e => {
-
+GetDataModal(document, 'click', '#btnEdit1', e => {
     const fila = e.target.parentNode.parentNode;
-    ia = fila.firstElementChild.innerHTML
-    showModal1()
+    name = fila.firstElementChild.innerHTML
+    console.log(name)
+    showModal()
     raza = document.querySelector('#raza1');
     let image = document.querySelector('.img1')
     link = document.querySelector('#link1');
@@ -113,18 +113,17 @@ selectRow1(document, 'click', '.btnEdit', e => {
     raza.value = fila.children[0].innerHTML;
     link.value = image.src;
 
-    tvaCat()
 })
 
 
-function tvaCat() {
+function Update() {
     let vaca1;
     fetch("http://localhost:5000/Cows")
         .then((res) => res.json())
         .then((res) => {
 
             for (var i = 0; i < res.length; i++) {
-                if (res[i].name == ia) {
+                if (res[i].name == name) {
                     vaca1 = res[i];
                     id = vaca1.id;
                     break
@@ -134,6 +133,7 @@ function tvaCat() {
             //  updateTable(vaca.categoryId)
             selection(vaca1.categoryId)
             updateCow(raza,link,vaca1);
+            FillTable(vaca.categoryId)
 
         })
 }
@@ -178,5 +178,6 @@ function updateCow(element1, element2, cow) {
         })
         .then((res) => res.json())
         .then((res1) => console.log(res1))
+        alert('Elemento Actualizado')
 
 }
