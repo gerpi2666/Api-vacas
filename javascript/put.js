@@ -102,24 +102,49 @@ const showModal = () => {
 let name;
 let raza;
 let link;
-let id
 
 GetDataModal(document, 'click', '#btnEdit1', e => {
+
     const fila = e.target.parentNode.parentNode;
-    name = fila.firstElementChild.innerHTML
-    //console.log(name)
-    showModal()
+    name = fila.firstElementChild.innerHTML;
+    // console.log(name);
+    showModal();
     raza = document.querySelector('#raza1');
-    let image = document.querySelector('.img1')
+    let image = document.querySelector('.img1');
     link = document.querySelector('#link1');
     // console.log(raza)
-    raza.value = fila.children[0].innerHTML;
+    raza.value = name;
     link.value = image.src;
 
+    let categoryId = getCategoryCow(name)
+;
+    console.log(categoryId);
 })
 
+async function getCategoryCow(nameCow) {
+
+    const response = await fetch("http://localhost:5000/Cows",
+    {
+        method: 'GET'
+    })
+
+            
+    const data = await response.json();
+
+    let categoryId = 0;
+
+    data.forEach(element => {
+
+        if (element.name == nameCow) {
+            categoryId = element.categoryId;
+        }
+    });
+
+    selection(categoryId);
+}
 
 function Update() {
+
     let vaca1;
     fetch("http://localhost:5000/Cows")
         .then((res) => res.json())
@@ -133,7 +158,6 @@ function Update() {
 
                 }
             }
-            selection(vaca1.categoryId)
             updateCow(raza, link, vaca1);
             //XmlrequestPut(raza, link, vaca1)
             //AjaxJqueryPUT(raza, link, vaca1);
@@ -143,6 +167,7 @@ function Update() {
 }
 
 function selection(cat) {
+
     let milk = document.getElementById('milk');
     let meat = document.getElementById('meat');
     let double = document.getElementById('double');
