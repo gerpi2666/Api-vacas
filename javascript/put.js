@@ -102,6 +102,7 @@ const showModal = () => {
 let name;
 let raza;
 let link;
+let id;
 
 GetDataModal(document, 'click', '#btnEdit1', e => {
 
