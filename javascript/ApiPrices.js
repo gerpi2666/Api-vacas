@@ -44,7 +44,7 @@ async function GetCards(code, exchangeRate) {
                             <h5 class="card-title text-center">Precio por ${categorias[i].nombre}</h5>
                             
                             <p class="text-center">Precio promedio canal<span class="mt-2"><br>${precioPromedio}</span></p>
-                            <p class="text-center">Precio promedio canal por kilo<span class"mt-2"><br>${priceXkilo(kilo)}</p>
+                            <p class="text-center">Precio promedio canal por kilo</p>
 
                             </div>
                         </div>`
