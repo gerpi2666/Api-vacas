@@ -15,8 +15,8 @@ function GetCountryBeff(code) {
                     count++;
                 }
            });
-           console.log(avg)
-           console.log(count)
+           console.log(avg);
+           console.log(count);
            //avg=avg/count;
 
             
