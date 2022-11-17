@@ -34,12 +34,12 @@ async function GetCards(code, exchangeRate) {
     }];
 
     let htmlCards = "";
-    for (let i = 0; i < categorias.length; i++) {
+    for (let i = 0; i <categorias.length; i++) {
         let kilo;
         let precioPromedio = await getPrices(code, exchangeRate, categorias[i].nombreBusqueda)
         kilo=precioPromedio;
                 htmlCards += `<div class="card p-0 col m-2" style="width: 18rem;">
-                        <img src="https://www.cattle.com/blog/images/Bull.jpg" class="card-img-top">
+                        <img src="${imgSrc(categorias[i].nombreBusqueda)}" class="card-img-top">
                         <div class="card-body">
                             <h5 class="card-title text-center">Precio por ${categorias[i].nombre}</h5>
                             
@@ -76,6 +76,16 @@ async function getPrices(code, exchangeRate, category) {
     return avg;
 }
 
-function priceXkilo(price){
-    return price/100
+function imgSrc(categoryName){
+    let src='';
+    if (categoryName=='Heifers') {
+        src+='https://storage.contextoganadero.com/s3fs-public/styles/noticias_one/public/ganaderia/field_image/2019-05/raza_simmental.jpg?itok=qWVKIjog'
+    }
+    if (categoryName=='Steers') {
+        src+='https://thumbs.dreamstime.com/b/breeding-brahman-cattle-breed-breeding-brahman-cattle-breed-186546763.jpg'
+    }
+    if (categoryName=='Young bulls') {
+        src+='https://i.pinimg.com/550x/f2/a0/b2/f2a0b22660c8e4ce5fa52eaa6dc904d5.jpg'
+    }
+    return src;
 }
